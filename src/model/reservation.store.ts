@@ -1,7 +1,12 @@
 import { writable } from 'svelte/store';
-import type { Reservation, ReservationStoreData } from './reservation.model';
+import { isSameDay } from '../utils/date.utils';
+import {
+   mapDtoToReservation,
+   type ReservationDto,
+   type ReservationStoreData,
+} from './reservation.model';
 
-const mockedReservations: Reservation[] = [
+const mockedReservations: ReservationDto[] = [
    {
       id: '1',
       owner: '1',
@@ -16,8 +21,11 @@ const mockedReservations: Reservation[] = [
    },
 ];
 
-const reservations$ = writable<ReservationStoreData>(null);
+export const reservationStore = writable<ReservationStoreData>(null);
 
-export const loadSlots = (): Reservation[] => {
-   return mockedReservations;
+export const loadReservationsForDay = (date: Date) => {
+   const reservations = mockedReservations
+      .map(mapDtoToReservation)
+      .filter((reservation) => isSameDay(date, reservation.startTime));
+   reservationStore.set(reservations);
 };
