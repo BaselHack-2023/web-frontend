@@ -8,12 +8,14 @@
    import LostUploaded from './routes/lost-and-found/LostUploaded.svelte';
    import SearchInFound from './routes/lost-and-found/SearchInFound.svelte';
    import ThanksForUploading from './routes/lost-and-found/ThanksForUploading.svelte';
+   import ShareAslot from './routes/share-a-slot/shareAslot.svelte';
 </script>
 
 <Router>
    <nav>
       <Link to="/">Calendar</Link>
       <Link to="/lost-and-found/LostAndFound.svelte">Lost&Found</Link>
+      <Link to="/share-a-slot/shareAslot.svelte">Share a Slot</Link>
    </nav>
    <main>
       <Route path="/lost-and-found/ThanksForUploading.svelte" component={ThanksForUploading} />
@@ -22,6 +24,7 @@
       <Route path="/lost-and-found/Found.svelte" component={Found} />
       <Route path="/lost-and-found/Lost.svelte" component={Lost} />
       <Route path="/lost-and-found/LostAndFound.svelte" component={LostAndFound} />
+      <Route path="/share-a-slot/shareAslot.svelte" component={ShareAslot} />
       <Route path="/"><Calendar /></Route>
    </main>
 </Router>
