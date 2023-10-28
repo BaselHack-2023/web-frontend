@@ -2,7 +2,8 @@ export {};
 
 declare global {
    interface Date {
-      addHours(days: number): Date;
+      addHours(hours: number): Date;
+      addDays(days: number): Date;
       isSameDay(otherDate: Date): boolean;
       toWeekdayString(): string;
       toTime(): string;
@@ -14,6 +15,11 @@ declare global {
 
 Date.prototype.addHours = function (hours: number) {
    this.setTime(this.getTime() + hours * 60 * 60 * 1000);
+   return this;
+};
+
+Date.prototype.addDays = function (days: number) {
+   this.setDate(this.getDate() + days);
    return this;
 };
 
