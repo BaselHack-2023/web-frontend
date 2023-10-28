@@ -1,7 +1,9 @@
 <script lang="ts">
    import { createEventDispatcher } from 'svelte';
+   import { get } from 'svelte/store';
    import { DEFAULT_BOOKING_HOURS } from '../../../consts';
    import { createReservation } from '../../../model/reservation.store';
+   import { userStore } from '../../../model/user.store';
    import { newDateWithTime } from '../../../utils/date.utils';
 
    export let selecedDate: Date;
@@ -21,10 +23,16 @@
       startTime?.isAfter(availableFrom) || endTime?.isBefore(availableUntil);
 
    const cancelBooking = () => dispatch('cancelBooking');
-   const addBooking = () => createReservation(startTime, endTime);
+   const addBooking = () => {
+      const user = get(userStore);
+      if (user) {
+         createReservation(user.id, startTime, endTime);
+      }
+   };
 </script>
 
 <div class="booking-container">
+   {$userStore?.id}
    <label for="time">
       Start time
       <input

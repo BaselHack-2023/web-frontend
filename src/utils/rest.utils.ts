@@ -7,9 +7,14 @@ export const get = async <T>(endpoint: string) => {
 };
 
 export const post = async <T>(endpoint: string, body: T): Promise<T> => {
+   console.log(body);
    const json = JSON.stringify(body);
-   return fetch(`${BASE_URL}${endpoint}`, {
+   const options = {
       method: 'POST',
       body: json,
-   }).then((response: Response) => response.json() as T);
+      headers: new Headers({ 'content-type': 'application/json' }),
+   };
+   return fetch(`${BASE_URL}${endpoint}`, options).then(
+      (response: Response) => response.json() as T
+   );
 };
