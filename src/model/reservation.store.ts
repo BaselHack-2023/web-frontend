@@ -10,14 +10,14 @@ const mockedReservations: ReservationDto[] = [
    {
       id: '1',
       owner: '1',
-      startTime: 1698667200,
-      endTime: 1698670800,
+      start_time: '2023-10-30T12:00:00.00+01:00',
+      end_time: '2023-10-30T13:00:00.00+01:00',
    },
    {
       id: '2',
       owner: '2',
-      startTime: 1698678000,
-      endTime: 1698681600,
+      start_time: '2023-10-30T15:00:00.00+01:00',
+      end_time: '2023-10-30T16:00:00.00+01:00',
    },
 ];
 
