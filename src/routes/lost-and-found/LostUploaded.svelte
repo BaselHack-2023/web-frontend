@@ -1,15 +1,17 @@
 <script lang="ts">
    // logic
    import { Router, Route, Link } from 'svelte-routing';
-</script>
+ </script>
+
+<div class="boxes">
+   <div>Your item is uploaded into the LOST-Database.</div>
+   <div></div>
+   <div>You will receive a notification, if your item is found.</div>
+</div>
 
 <div class="boxes">
    <div> <nav>
-      <Link to="/lost-and-found/Lost.svelte">LOST</Link>
-    </nav>
-    </div>
-   <div><nav>
-      <Link to="/lost-and-found/Found.svelte">FOUND</Link>
+      <Link to="/lost-and-found/SeachInFound.svelte">Search yourself in the FOUND-Database.</Link>
     </nav></div>
 </div>
 
@@ -21,7 +23,5 @@
       align-items: center;
    }
 </style>
-
-
 
 

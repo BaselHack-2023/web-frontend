@@ -4,12 +4,13 @@
 </script>
 
 <div class="boxes">
+   <div>Please, upload a picture of the item:</div>
+   <div></div>
+</div>
+
+<div class="boxes">
    <div> <nav>
-      <Link to="/lost-and-found/Lost.svelte">LOST</Link>
-    </nav>
-    </div>
-   <div><nav>
-      <Link to="/lost-and-found/Found.svelte">FOUND</Link>
+      <Link to="/lost-and-found/ThanksForUploading.svelte">Image is uploaded.</Link>
     </nav></div>
 </div>
 
@@ -21,7 +22,4 @@
       align-items: center;
    }
 </style>
-
-
-
 
