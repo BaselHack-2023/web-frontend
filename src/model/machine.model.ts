@@ -1,5 +1,5 @@
 export interface Machine {
-   id: string;
+   id: string; // uuid
    name: string;
    property: string;
 }

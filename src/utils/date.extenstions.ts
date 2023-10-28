@@ -6,6 +6,7 @@ declare global {
       isSameDay(otherDate: Date): boolean;
       toWeekdayString(): string;
       toTime(): string;
+      toShortISOString(): string;
       isAfter(otherDate: Date): boolean;
       isBefore(otherDate: Date): boolean;
    }
@@ -44,4 +45,8 @@ Date.prototype.isAfter = function (otherDate: Date): boolean {
 
 Date.prototype.isBefore = function (otherDate: Date): boolean {
    return this.getTime() > otherDate.getTime();
+};
+
+Date.prototype.toShortISOString = function (): string {
+   return this.toISOString().split('T')[0];
 };

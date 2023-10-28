@@ -5,12 +5,12 @@ import {
 } from './base.model';
 
 export interface ReservationDto extends StartEndTimeDto {
-   id: string;
+   id?: string;
    owner: string;
 }
 
 export interface Reservation extends StartEndTime {
-   id: string;
+   id?: string;
    owner: string;
 }
 
