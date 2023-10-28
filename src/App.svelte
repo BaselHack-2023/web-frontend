@@ -1,4 +1,5 @@
 <script lang="ts">
+   import '@picocss/pico/css/pico.min.css';
    import { Link, Route, Router } from 'svelte-routing';
    import Calendar from './routes/calendar/Calendar.svelte';
    import LostAndFound from './routes/lost-and-found/LostAndFound.svelte';
