@@ -1,10 +1,16 @@
 <script lang="ts">
-   import Datepicker from './lib/Datepicker.svelte';
-
-   let pickedDate: Date;
+   import { Link, Route, Router } from 'svelte-routing';
+   import Calendar from './routes/calendar/Calendar.svelte';
+   import LostAndFound from './routes/lost-and-found/LostAndFound.svelte';
 </script>
 
-<main>
-   <p>{pickedDate}</p>
-   <Datepicker bind:date={pickedDate} />
-</main>
+<Router>
+   <nav>
+      <Link to="/">Calendar</Link>
+      <Link to="/lost-and-found">Blog</Link>
+   </nav>
+   <main>
+      <Route path="/lost-and-found" component={LostAndFound} />
+      <Route path="/"><Calendar /></Route>
+   </main>
+</Router>
