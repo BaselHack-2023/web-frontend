@@ -1,13 +1,16 @@
 import { writable } from 'svelte/store';
+import { get } from '../utils/rest.utils';
 import type { User, UserStoreData } from './user.model';
-
-const mockUser: User = {
-   id: '1',
-   name: '1',
-};
 
 export const userStore = writable<UserStoreData>(null);
 
 export const loadUserByApartmentNumber = (apartmentNumber: number) => {
-   userStore.set(mockUser);
+   get<{ data: User[] }>('/users')
+      .then((response) => response.data)
+      .then((users) => {
+         const user = users.find(
+            (user) => user.name === apartmentNumber.toString()
+         );
+         userStore.set(user ?? null);
+      });
 };
