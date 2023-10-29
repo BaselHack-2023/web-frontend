@@ -19,8 +19,6 @@
    $: if (timeStr) startTime = newDateWithTime(selecedDate, timeStr);
    $: if (startTime)
       endTime = new Date(startTime).addHours(DEFAULT_BOOKING_HOURS);
-   $: invalid =
-      startTime?.isAfter(availableFrom) || endTime?.isBefore(availableUntil);
 
    const cancelBooking = () => dispatch('cancelBooking');
    const addBooking = () => {
@@ -32,14 +30,12 @@
 </script>
 
 <div class="booking-container">
-   {$userStore?.id}
    <label for="time">
       Start time
       <input
          type="time"
          name="time"
          placeholder="Start time"
-         aria-invalid={invalid}
          bind:value={timeStr}
       />
    </label>
@@ -48,7 +44,7 @@
    {/if}
    <div class="button-container">
       <button on:click={cancelBooking}>Cancel booking</button>
-      <button on:click={addBooking} disabled={invalid}>Confirm booking</button>
+      <button on:click={addBooking}>Confirm booking</button>
    </div>
 </div>
 
