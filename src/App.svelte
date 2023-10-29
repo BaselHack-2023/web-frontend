@@ -3,9 +3,10 @@
    import { Link, Route, Router } from 'svelte-routing';
    import Calendar from './routes/calendar/Calendar.svelte';
    import Home from './routes/home/Home.svelte';
-   import LostAndFound from './routes/lost-and-found/LostAndFound.svelte';
    import Found from './routes/lost-and-found/Found.svelte';
    import Lost from './routes/lost-and-found/Lost.svelte';
+   import LostAndFound from './routes/lost-and-found/LostAndFound.svelte';
+
    import LostUploaded from './routes/lost-and-found/LostUploaded.svelte';
    import SearchInFound from './routes/lost-and-found/SearchInFound.svelte';
    import ThanksForUploading from './routes/lost-and-found/ThanksForUploading.svelte';
