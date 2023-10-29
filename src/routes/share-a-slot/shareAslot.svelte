@@ -1,29 +1,32 @@
 <script lang="ts">
-   import { Router, Route, Link } from 'svelte-routing';
-
+   import { navigate } from 'svelte-routing';
    let size = '';
+   let amount = '';
    let SelectionColor = 'Sock';
 	let OptionColor = [
-		'Sock',
-		'Underwear',
-		'T-shirt', 'Shirt', 'Trousers', 'Jacket'
+		'White',
+		'Black',
+		'Yellow', 'Orange', 'Red', 'Blue', 'Green','Grey'
 	]
 
    let SelectionProgram= 'Sock';
 	let OptionProgram = [
-		'Sock',
-		'Underwear',
-		'T-shirt', 'Shirt', 'Trousers', 'Jacket'
+		'Light',
+		'Wool',
+		'Intensive'
 	]
 
    $: console.log('Changed selected:', SelectionProgram)
 	$: console.log('Updated options:', OptionProgram)
+
+   const redirectToUp = () => {
+      navigate('/share-a-slot/shareUploaded.svelte');
+   };
 </script>
 
-<div class="boxes">
-   <div>Define your cloths for the shared laundry</div>
-   <div></div>
-</div>
+
+<h1>Define your cloths for the shared laundry</h1>
+
 
 
 Color: <select bind:value={SelectionColor}>
@@ -34,15 +37,8 @@ Laundry Program: <select bind:value={SelectionProgram}>
 	{#each OptionProgram as value}<option {value}>{value}</option>{/each}
 </select>
 
- Temperature: <input bind:value={size} placeholder="enter the size" />
+Temperature: <input bind:value={size} placeholder="enter the temperature" />
 
-Amount: <input bind:value={size} placeholder="enter the cloth amount you have" />
+Amount: <input bind:value={amount} placeholder="enter the amount of cloths you have" />
 
-<style>
-   .boxes {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-   }
-</style>
+<button on:click={redirectToUp}>Upload my share request.</button>

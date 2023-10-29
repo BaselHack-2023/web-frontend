@@ -1,32 +1,22 @@
 <script lang="ts">
    // logic
-   import { Router, Route, Link } from 'svelte-routing';
+   import { navigate } from 'svelte-routing';
+
+   const redirectToFound = () => {
+      navigate('/lost-and-found/Found.svelte');
+   };
+
+   const redirectToHome = () => {
+      navigate('/');
+   };
+
  </script>
 
-<div class="boxes">
-   <div>Thanks for uploading the lost item.</div>
-   <div></div>
-</div>
 
-<div class="boxes">
-   <div> <nav>
-      <Link to="/lost-and-found/Found.svelte">Upload a new item.</Link>
-    </nav></div>
-</div>
+<h1>Thanks for uploading the lost item.</h1>
 
-<div class="boxes">
-   <div> <nav>
-      <Link to="/">Return to Homepage.</Link>
-    </nav></div>
-</div>
+<button on:click={redirectToHome}>Return to Homepage.</button>
+<button on:click={redirectToFound}>Upload a new item.</button>
 
-<style>
-   .boxes {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-   }
-</style>
 
 

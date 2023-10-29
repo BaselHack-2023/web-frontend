@@ -1,18 +1,14 @@
-<script lang="ts">
-   // logic
-</script>
+<script>
+   import Icon from "../../lib/assets/img1.webp"
+   import icon2 from "../../lib/assets/img2.png"
+   </script>
 
-<div class="boxes">
-   <div>Lost</div>
-   <div>Found</div>
-</div>
+<h1>FOUND Database</h1> 
+<img src={Icon} alt="Listing" style="font-size: 2px">
+<img src={icon2} alt="download icon"/>
 
 <style>
-   .boxes {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+   img {
+      height: 200px;
    }
 </style>
-
