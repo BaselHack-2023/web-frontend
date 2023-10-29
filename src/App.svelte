@@ -6,11 +6,15 @@
    import Found from './routes/lost-and-found/Found.svelte';
    import Lost from './routes/lost-and-found/Lost.svelte';
    import LostAndFound from './routes/lost-and-found/LostAndFound.svelte';
+
    import LostUploaded from './routes/lost-and-found/LostUploaded.svelte';
    import SearchInFound from './routes/lost-and-found/SearchInFound.svelte';
    import ThanksForUploading from './routes/lost-and-found/ThanksForUploading.svelte';
    import Machines from './routes/machines/Machines.svelte';
    import ShareAslot from './routes/share-a-slot/shareAslot.svelte';
+   import ShareUploaded from './routes/share-a-slot/shareUploaded.svelte';
+   import LiesasRequest from './routes/share-a-slot/LiesasRequest.svelte';
+   import LiesasChat from './routes/share-a-slot/LiesasChat.svelte';
    import './utils/date.extenstions';
 </script>
 
@@ -50,6 +54,9 @@
          component={LostAndFound}
       />
       <Route path="/share-a-slot/shareAslot.svelte" component={ShareAslot} />
+      <Route path="/share-a-slot/shareUploaded.svelte" component={ShareUploaded} />
+      <Route path="/share-a-slot/LiesasRequest.svelte" component={LiesasRequest} />
+      <Route path="/share-a-slot/LiesasChat.svelte" component={LiesasChat} />
       <Route path="/lost-and-found" component={LostAndFound} />
       <Route path="/calendar" component={Calendar} />
       <Route path="/machines" component={Machines} />
