@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { post } from '../utils/rest.utils';
+import { get, post } from '../utils/rest.utils';
 import {
    mapDtoToReservation,
    type Reservation,
@@ -7,36 +7,7 @@ import {
    type ReservationStoreData,
 } from './reservation.model';
 
-const mockedReservations: ReservationDto[] = [
-   {
-      id: '2',
-      owner: '2',
-      start_time: '2023-10-30T15:00:00.00+01:00',
-      end_time: '2023-10-30T16:00:00.00+01:00',
-      machine: '1',
-   },
-   {
-      id: '1',
-      owner: '1',
-      start_time: '2023-10-30T12:00:00.00+01:00',
-      end_time: '2023-10-30T13:00:00.00+01:00',
-      machine: '1',
-   },
-   {
-      id: '3',
-      owner: '3',
-      start_time: '2023-10-29T15:00:00.00+01:00',
-      end_time: '2023-10-29T16:00:00.00+01:00',
-      machine: '1',
-   },
-   {
-      id: '4',
-      owner: '4',
-      start_time: '2023-10-29T10:00:00.00+01:00',
-      end_time: '2023-10-29T12:00:00.00+01:00',
-      machine: '1',
-   },
-];
+let cachedReservations: ReservationStoreData | null;
 
 export const reservationStore = writable<ReservationStoreData>(null);
 
@@ -49,23 +20,25 @@ const sortReservations = (reservations: Reservation[]): Reservation[] => {
 const filterReservations =
    (dateToFilterFor: Date) =>
    (reservation: Reservation): boolean => {
-      const now = new Date();
       let isValid = dateToFilterFor.isSameDay(reservation.startTime);
-      if (now.isSameDay(dateToFilterFor)) {
-         isValid = isValid && reservation.startTime.isBefore(now);
-      }
       return isValid;
    };
 
 // public methods
 
 export const loadReservationsForDay = (date: Date): void => {
-   const reservations = sortReservations(
-      mockedReservations
-         .map(mapDtoToReservation)
-         .filter(filterReservations(date))
-   );
-   reservationStore.set({ reservations, for: date });
+   if (!cachedReservations?.for.isSameDay(date)) {
+      get<{ data: ReservationDto[] }>('/reservations').then((response) => {
+         const reservations = sortReservations(
+            response.data
+               .map(mapDtoToReservation)
+               .filter(filterReservations(date))
+         );
+         const storeData = { reservations, for: date };
+         cachedReservations = storeData;
+         reservationStore.set(storeData);
+      });
+   }
 };
 
 export const createReservation = async (
@@ -76,9 +49,10 @@ export const createReservation = async (
 ): Promise<void> => {
    post<ReservationDto>('/reservations', {
       owner: user,
-      start_time: startTime.toISOString(),
-      end_time: endTime.toISOString(),
+      start_time: startTime.toBeutlerSpecialString(),
+      end_time: endTime.toBeutlerSpecialString(),
       machine,
+      shared: false,
    }).then((json) => {
       reservationStore.update((storeData) => {
          if (storeData) {
@@ -86,7 +60,7 @@ export const createReservation = async (
                ...storeData,
                reservations: sortReservations([
                   ...(storeData?.reservations ?? []),
-                  mapDtoToReservation(json),
+                  mapDtoToReservation(json.data),
                ]),
             };
          }

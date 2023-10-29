@@ -4,7 +4,7 @@ import type { User, UserStoreData } from './user.model';
 
 export const userStore = writable<UserStoreData>(null);
 
-export const loadUserByApartmentNumber = (name: string) => {
+export const loadUserByName = (name: string) => {
    get<{ data: User[] }>('/users')
       .then((response) => response.data)
       .then((users) => {

@@ -1,9 +1,6 @@
 <script lang="ts">
    import { navigate } from 'svelte-routing';
-   import {
-      loadReservationsForDay,
-      reservationStore,
-   } from '../../model/reservation.store';
+   import { reservationStore } from '../../model/reservation.store';
 
    const redirectToBookLater = () => {
       reservationStore.set(null);
@@ -11,8 +8,7 @@
    };
 
    const redirectToBookNow = () => {
-      loadReservationsForDay(new Date());
-      navigate('/calendar');
+      navigate('/machines');
    };
 </script>
 

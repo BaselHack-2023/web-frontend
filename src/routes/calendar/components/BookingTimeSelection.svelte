@@ -2,6 +2,7 @@
    import { createEventDispatcher } from 'svelte';
    import { get } from 'svelte/store';
    import { DEFAULT_BOOKING_HOURS } from '../../../consts';
+   import { machineStore } from '../../../model/machine.store';
    import { createReservation } from '../../../model/reservation.store';
    import { userStore } from '../../../model/user.store';
    import { newDateWithTime } from '../../../utils/date.utils';
@@ -23,8 +24,9 @@
    const cancelBooking = () => dispatch('cancelBooking');
    const addBooking = () => {
       const user = get(userStore);
-      if (user) {
-         createReservation(user.id, startTime, endTime);
+      const machine = get(machineStore)?.at(0)?.id;
+      if (user && machine) {
+         createReservation(user.id, machine, startTime, endTime);
       }
    };
 </script>

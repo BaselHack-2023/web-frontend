@@ -8,12 +8,14 @@ export interface ReservationDto extends StartEndTimeDto {
    id?: string;
    owner: string;
    machine: string;
+   shared: boolean;
 }
 
 export interface Reservation extends StartEndTime {
    id?: string;
    owner: string;
    machine: string;
+   shared: boolean;
 }
 
 export interface ReservationStore {

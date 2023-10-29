@@ -1,4 +1,5 @@
 <script lang="ts">
+   import { onMount } from 'svelte';
    import {
       DEFAULT_DAY_END,
       DEFAULT_DAY_START,
@@ -9,6 +10,7 @@
       loadReservationsForDay,
       reservationStore,
    } from '../../model/reservation.store';
+   import { loadUserByName } from '../../model/user.store';
    import Booking from './components/Booking.svelte';
    import DateSelector from './components/DateSelector.svelte';
    import ReservationCard from './components/ReservationCard.svelte';
@@ -52,6 +54,10 @@
       }
       return date;
    };
+
+   onMount(async () => {
+      loadUserByName('1');
+   });
 </script>
 
 <DateSelector bind:selecedDate />

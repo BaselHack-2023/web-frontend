@@ -11,6 +11,7 @@ declare global {
       toWeekdayString(): string;
       toTime(): string;
       toShortISOString(): string;
+      toBeutlerSpecialString(): string;
       isAfter(otherDate: Date): boolean;
       isBefore(otherDate: Date): boolean;
    }
@@ -67,4 +68,8 @@ Date.prototype.isBefore = function (otherDate: Date): boolean {
 
 Date.prototype.toShortISOString = function (): string {
    return this.toISOString().split('T')[0];
+};
+
+Date.prototype.toBeutlerSpecialString = function (): string {
+   return this.toISOString().split('.')[0];
 };

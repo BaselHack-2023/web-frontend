@@ -1,16 +1,13 @@
 <script lang="ts">
    import Teapot from '../../lib/Teapot.svelte';
-   import {
-      loadUserByApartmentNumber,
-      userStore,
-   } from '../../model/user.store';
+   import { loadUserByName, userStore } from '../../model/user.store';
    import BookingSelection from './BookingSelection.svelte';
 
    let apartmentNumber: string | undefined;
 
    const onApartmentNumberBlur = () => {
       if (apartmentNumber) {
-         loadUserByApartmentNumber(apartmentNumber);
+         loadUserByName(apartmentNumber);
       }
    };
 

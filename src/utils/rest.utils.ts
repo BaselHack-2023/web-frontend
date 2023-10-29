@@ -6,15 +6,17 @@ export const get = async <T>(endpoint: string) => {
    }).then((response: Response) => response.json() as T);
 };
 
-export const post = async <T>(endpoint: string, body: T): Promise<T> => {
-   console.log(body);
+export const post = async <T>(
+   endpoint: string,
+   body: T
+): Promise<{ data: T }> => {
    const json = JSON.stringify(body);
    const options = {
       method: 'POST',
       body: json,
       headers: new Headers({ 'content-type': 'application/json' }),
    };
-   return fetch(`${BASE_URL}${endpoint}`, options).then(
-      (response: Response) => response.json() as T
+   return fetch(`${BASE_URL}${endpoint}`, options).then((response: Response) =>
+      response.json()
    );
 };
