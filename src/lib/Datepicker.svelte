@@ -1,6 +1,6 @@
 <script lang="ts">
    export let label: string = 'Select a date please';
-   export let date: Date;
+   export let date: string;
 </script>
 
 <div>
