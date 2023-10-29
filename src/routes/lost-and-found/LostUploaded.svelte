@@ -6,7 +6,11 @@
    };
  </script>
 
-<h1>Your item is uploaded into the LOST-Database.</h1>
+
+<div class="mainContainer">
+   <h1>Your item is uploaded into the LOST-Database.</h1>
+   <div></div>
+</div>
 
 <div class="boxes">
    <div></div>
@@ -18,6 +22,14 @@
 
 
 <style>
+   .mainContainer {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+   }
+
    .boxes {
       display: flex;
       flex-direction: column;
@@ -25,5 +37,3 @@
       align-items: center;
    }
 </style>
-
-
