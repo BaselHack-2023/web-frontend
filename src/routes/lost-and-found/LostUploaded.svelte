@@ -1,19 +1,21 @@
 <script lang="ts">
    // logic
-   import { Router, Route, Link } from 'svelte-routing';
+   import { navigate } from 'svelte-routing';
+   const redirectToFoundDB = () => {
+      navigate('/lost-and-found/SearchInFound.svelte');
+   };
  </script>
 
+<h1>Your item is uploaded into the LOST-Database.</h1>
+
 <div class="boxes">
-   <div>Your item is uploaded into the LOST-Database.</div>
    <div></div>
    <div>You will receive a notification, if your item is found.</div>
 </div>
 
-<div class="boxes">
-   <div> <nav>
-      <Link to="/lost-and-found/SeachInFound.svelte">Search yourself in the FOUND-Database.</Link>
-    </nav></div>
-</div>
+<button on:click={redirectToFoundDB}>Search yourself in the LOST-Database.</button>
+
+
 
 <style>
    .boxes {

@@ -1,7 +1,6 @@
 <script lang="ts">
    // logic
-   import { Router, Route, Link } from 'svelte-routing';
-   
+   import { navigate } from 'svelte-routing';
    let size = '';
    let SelectionItem = 'Sock';
 	let OptionItem = [
@@ -12,9 +11,9 @@
 
    let SelectionColor = 'Sock';
 	let OptionColor = [
-		'Sock',
-		'Underwear',
-		'T-shirt', 'Shirt', 'Trousers', 'Jacket'
+		'White',
+		'Black',
+		'Yellow', 'Orange', 'Red', 'Blue', 'Green','Grey'
 	]
 
    $: if(!!size && !!SelectionItem && !!SelectionColor)
@@ -26,6 +25,10 @@
 
    $: console.log('Changed selected:', SelectionColor)
 	$: console.log('Updated options:', OptionColor)
+
+   const redirectToUploaded = () => {
+      navigate('/lost-and-found/LostUploaded.svelte');
+   };
 
  </script>
 
@@ -47,11 +50,8 @@ Color: <select bind:value={SelectionColor}>
 <div>
 Size: <input bind:value={size} placeholder="enter the size" /></div>
 
-<div class="boxes">
-   <div> <nav>
-      <Link to="/lost-and-found/LostUploaded.svelte">Upload my lost item</Link>
-    </nav></div>
-</div>
+<button on:click={redirectToUploaded}>Upload my lost item.</button>
+
 
 <style>
    .boxes {
