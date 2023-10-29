@@ -13,24 +13,28 @@ const mockedReservations: ReservationDto[] = [
       owner: '2',
       start_time: '2023-10-30T15:00:00.00+01:00',
       end_time: '2023-10-30T16:00:00.00+01:00',
+      machine: '1',
    },
    {
       id: '1',
       owner: '1',
       start_time: '2023-10-30T12:00:00.00+01:00',
       end_time: '2023-10-30T13:00:00.00+01:00',
+      machine: '1',
    },
    {
       id: '3',
       owner: '3',
       start_time: '2023-10-29T15:00:00.00+01:00',
       end_time: '2023-10-29T16:00:00.00+01:00',
+      machine: '1',
    },
    {
       id: '4',
       owner: '4',
       start_time: '2023-10-29T10:00:00.00+01:00',
       end_time: '2023-10-29T12:00:00.00+01:00',
+      machine: '1',
    },
 ];
 
@@ -66,6 +70,7 @@ export const loadReservationsForDay = (date: Date): void => {
 
 export const createReservation = async (
    user: string,
+   machine: string,
    startTime: Date,
    endTime: Date
 ): Promise<void> => {
@@ -73,6 +78,7 @@ export const createReservation = async (
       owner: user,
       start_time: startTime.toISOString(),
       end_time: endTime.toISOString(),
+      machine,
    }).then((json) => {
       reservationStore.update((storeData) => {
          if (storeData) {

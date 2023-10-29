@@ -7,11 +7,13 @@ import {
 export interface ReservationDto extends StartEndTimeDto {
    id?: string;
    owner: string;
+   machine: string;
 }
 
 export interface Reservation extends StartEndTime {
    id?: string;
    owner: string;
+   machine: string;
 }
 
 export interface ReservationStore {

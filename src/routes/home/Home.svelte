@@ -6,26 +6,33 @@
    } from '../../model/user.store';
    import BookingSelection from './BookingSelection.svelte';
 
-   let apartmentNumber: number | undefined;
+   let apartmentNumber: string | undefined;
 
    const onApartmentNumberBlur = () => {
       if (apartmentNumber) {
          loadUserByApartmentNumber(apartmentNumber);
       }
    };
+
+   const onKeyDown = (event: KeyboardEvent) => {
+      if (event.code === 'Enter') {
+         onApartmentNumberBlur();
+      }
+   };
 </script>
 
 {#if !$userStore}
-   <h1>¡Hola soy una tetera 🫖!</h1>
+   <h1>Welcome to 3Day T-Shirt</h1>
 
-   <label for="apartment-nr">
-      Please enter your apartment number:
+   <label for="name">
+      Please enter your name:
       <input
          bind:value={apartmentNumber}
          on:blur={onApartmentNumberBlur}
-         type="number"
-         name="apartment-nr"
-         placeholder="Apartment number"
+         on:keydown={onKeyDown}
+         type="text"
+         name="name"
+         placeholder="Your name"
       />
    </label>
 {:else}

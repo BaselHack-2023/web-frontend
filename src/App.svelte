@@ -9,16 +9,26 @@
    import LostUploaded from './routes/lost-and-found/LostUploaded.svelte';
    import SearchInFound from './routes/lost-and-found/SearchInFound.svelte';
    import ThanksForUploading from './routes/lost-and-found/ThanksForUploading.svelte';
+   import Machines from './routes/machines/Machines.svelte';
    import ShareAslot from './routes/share-a-slot/shareAslot.svelte';
    import './utils/date.extenstions';
 </script>
 
 <Router>
    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/calendar">Calendar</Link>
-      <Link to="/lost-and-found/LostAndFound.svelte">Lost&Found</Link>
-      <Link to="/share-a-slot/shareAslot.svelte">Share a Slot</Link>
+      <ul>
+         <li><strong>3Day T-Shirt</strong></li>
+      </ul>
+      <ul>
+         <li><Link to="/">Home</Link></li>
+         <li><Link to="/calendar">Calendar</Link></li>
+         <li>
+            <Link to="/lost-and-found/LostAndFound.svelte">Lost&Found</Link>
+         </li>
+         <li>
+            <Link to="/share-a-slot/shareAslot.svelte">Share a Slot</Link>
+         </li>
+      </ul>
    </nav>
    <main>
       <Route
@@ -42,12 +52,14 @@
       <Route path="/share-a-slot/shareAslot.svelte" component={ShareAslot} />
       <Route path="/lost-and-found" component={LostAndFound} />
       <Route path="/calendar" component={Calendar} />
+      <Route path="/machines" component={Machines} />
       <Route path="/"><Home /></Route>
    </main>
 </Router>
 
 <style>
    main {
+      padding-top: 64px;
       min-width: 800px;
    }
 </style>

@@ -1,9 +1,12 @@
 <script lang="ts">
    import { BASE_URL } from '../consts';
 
-   export let isItTeatime: number | undefined;
+   export let isItTeatime: string | undefined;
+   let showTeapot: boolean = false;
 
-   $: showTeapot = isItTeatime === 418;
+   $: if (isItTeatime && !isNaN(parseInt(isItTeatime))) {
+      showTeapot = parseInt(isItTeatime) === 418;
+   }
 
    const hideTeapot = () => (showTeapot = false);
 
@@ -11,11 +14,6 @@
       return fetch(`${BASE_URL}/tea`).then((response: Response) =>
          response.text()
       );
-   };
-
-   const logErr = (err: any) => {
-      console.log(err);
-      return true;
    };
 </script>
 
