@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export {};
 
 declare global {
@@ -5,6 +7,7 @@ declare global {
       addHours(hours: number): Date;
       addDays(days: number): Date;
       isSameDay(otherDate: Date): boolean;
+      isToday(): boolean;
       toWeekdayString(): string;
       toTime(): string;
       toShortISOString(): string;
@@ -30,6 +33,15 @@ Date.prototype.isSameDay = function (otherDate: Date): boolean {
    return thisDateStr === otherDateStr;
 };
 
+Date.prototype.isToday = function (): boolean {
+   const today = new Date();
+   return (
+      this.getDate() == today.getDate() &&
+      this.getMonth() == today.getMonth() &&
+      this.getFullYear() == today.getFullYear()
+   );
+};
+
 Date.prototype.toWeekdayString = function (): string {
    return this.toLocaleDateString('en-us', {
       day: '2-digit',
@@ -46,11 +58,11 @@ Date.prototype.toTime = function (): string {
 };
 
 Date.prototype.isAfter = function (otherDate: Date): boolean {
-   return this.getTime() < otherDate.getTime();
+   return moment(this).isAfter(otherDate);
 };
 
 Date.prototype.isBefore = function (otherDate: Date): boolean {
-   return this.getTime() > otherDate.getTime();
+   return moment(this).isBefore(otherDate);
 };
 
 Date.prototype.toShortISOString = function (): string {
