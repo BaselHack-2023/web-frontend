@@ -14,11 +14,18 @@
    };
 </script>
 
-<h1>Have you lost or found the item?</h1>
-<button on:click={redirectToLost}>LOST</button>
-<button on:click={redirectToFound}>FOUND</button>
+<div class="mainContainer">
+   <h1>Have you lost or found the item?</h1>
+   <button on:click={redirectToLost}>LOST</button>
+   <button on:click={redirectToFound}>FOUND</button>   
+</div>
 
-
-
-
-
+<style>
+   .mainContainer {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+   }
+</style>
