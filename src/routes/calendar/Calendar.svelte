@@ -19,10 +19,11 @@
 
    $: if (selecedDate) loadReservationsForDay(selecedDate);
 
-   reservationStore.subscribe((allReservations) => {
-      hasReservations = !!allReservations && allReservations?.length > 0;
+   reservationStore.subscribe((storeData) => {
+      hasReservations = !!storeData && storeData?.reservations.length > 0;
+      selecedDate = storeData?.for;
       if (hasReservations) {
-         reservations = allReservations!;
+         reservations = storeData!.reservations;
       }
    });
 
@@ -30,7 +31,7 @@
       let defaultEnd = getSelectedDateWithTime(DEFAULT_DAY_END);
 
       if (index < reservations.length) {
-         const nextReservation = reservations.at(index + 1);
+         const nextReservation = reservations.at(index);
          return nextReservation?.startTime ?? defaultEnd;
       }
 
@@ -42,8 +43,13 @@
    };
 
    const getSelectedDateWithTime = (time: number): Date => {
-      let date = new Date(selecedDate!);
-      date.setHours(time);
+      let date = new Date();
+      if (selecedDate?.isToday()) {
+         date.setHours(date.getHours(), date.getMinutes() + 1, 0);
+      } else {
+         date = new Date(selecedDate!);
+         date.setHours(time, 0);
+      }
       return date;
    };
 </script>
@@ -54,13 +60,18 @@
    <div class="reservations-container">
       {#if hasReservations}
          <p>Reservations for: {selecedDate.toWeekdayString()}</p>
+         <Booking
+            {selecedDate}
+            availableFrom={getSelectedDateWithTime(DEFAULT_DAY_START)}
+            availableUntil={getAvailableUntil(0)}
+         />
          {#each reservations as reservation, i (i)}
             <ReservationCard {reservation} />
-            {#if showBookingButton(reservation.endTime, getAvailableUntil(i))}
+            {#if showBookingButton(reservation.endTime, getAvailableUntil(i + 1))}
                <Booking
                   {selecedDate}
                   availableFrom={reservation.endTime}
-                  availableUntil={getAvailableUntil(i)}
+                  availableUntil={getAvailableUntil(i + 1)}
                />
             {/if}
          {/each}

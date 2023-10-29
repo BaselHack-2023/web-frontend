@@ -14,7 +14,12 @@ export interface Reservation extends StartEndTime {
    owner: string;
 }
 
-export type ReservationStoreData = Reservation[] | null;
+export interface ReservationStore {
+   reservations: Reservation[];
+   for: Date;
+}
+
+export type ReservationStoreData = ReservationStore | null;
 
 export const mapDtoToReservation = (dto: ReservationDto): Reservation => {
    return {
