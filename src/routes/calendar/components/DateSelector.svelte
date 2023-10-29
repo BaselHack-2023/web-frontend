@@ -2,7 +2,7 @@
    import Datepicker from '../../../lib/Datepicker.svelte';
 
    export let selecedDate: Date | undefined;
-   let pickedDate: string;
+   let pickedDate: string = selecedDate?.toShortISOString() ?? '';
 
    $: selecedDate = !!pickedDate ? new Date(pickedDate) : undefined;
 
